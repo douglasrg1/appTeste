@@ -1,7 +1,7 @@
 using System;
 using Flunt.Notifications;
 
-namespace APPTESTE.App.Shared.Entity
+namespace App.Shared.Entity
 {
     public abstract class Entity : Notifiable
     {

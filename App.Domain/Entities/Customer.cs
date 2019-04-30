@@ -1,8 +1,8 @@
 using System;
-using APPTESTE.App.Shared.Entity;
+using App.Shared.Entity;
 using Flunt.Validations;
 
-namespace APPTESTE.App.Domain.Entities
+namespace App.Domain.Entities
 {
     public class Customer : Entity
     {

@@ -23,9 +23,9 @@ namespace App.Domain.Entities
             AddNotifications(new Contract()
                 .Requires()
                 .IsGreaterOrEqualsThan(Deliveryfee,0,"DelveryFee","O valor de entrega deve ser maior ou igual a 0")
-                .IsNotNull(customer,"Customer","O cliente não pode ser nulo")
                 .IsGreaterOrEqualsThan(Discount,0,"Discount","O disconto deve ser igual ou maior que 0")
             );
+            AddNotifications(Customer.Notifications);
         }
 
         public Customer Customer { get; private set; }

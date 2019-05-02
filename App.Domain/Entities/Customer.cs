@@ -18,6 +18,7 @@ namespace App.Domain.Entities
             AddNotifications(Name.Notifications);
             AddNotifications(email.Notifications);
             AddNotifications(document.Notifications);
+            AddNotifications(user.Notifications);
         }
         
         public Name Name { get; private set; }

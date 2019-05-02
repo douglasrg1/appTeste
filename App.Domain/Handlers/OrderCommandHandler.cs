@@ -1,3 +1,4 @@
+using App.Domain.Commands;
 using App.Domain.Commands.OrderCommand;
 using App.Domain.Entities;
 using App.Domain.Repositories;
@@ -20,7 +21,7 @@ namespace App.Domain.Handlers
             _productRepository = productRepository;
             _orderRepository = orderRepository;
         }
-        public void Handler(PlaceOrderCommand command)
+        public ICommandResult Handler(PlaceOrderCommand command)
         {
             var customer = _customerRepository.Get(command.Customer);
             var order = new Order(customer,command.DeliveryFee,command.Discount);
@@ -33,8 +34,14 @@ namespace App.Domain.Handlers
 
             AddNotifications(order.Notifications);
 
-            if(order.Valid)
-                _orderRepository.Save(order);
+            if(Invalid)
+                return new CommandResult(false,"Os seguintes dados não foram informados corretamente",
+                    Notifications);
+
+            _orderRepository.Save(order);
+
+            return new CommandResult(true,"Os dados foram adicionado com sucesso",
+                new {Number = order.Number, Status = order.Status});
         }
     }
 }

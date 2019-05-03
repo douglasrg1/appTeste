@@ -6,7 +6,7 @@ namespace App.Infra.Context
 {
     public class AppDataContext : DbContext
     {
-        public AppDataContext() : base(@"Server=.\sqlexpress;DataBase=appTeste;User ID=sa;Password=Drg4821;")
+        public AppDataContext() : base(@"Server=.\sqlexpress;DataBase=appTeste;User ID=sa;Password=Drg38914821;")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;

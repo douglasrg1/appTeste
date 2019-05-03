@@ -10,6 +10,11 @@ namespace App.Domain.Entities
     public class Order : Entity
     {
         private readonly IList<OrderItem> _items;
+
+        protected Order()
+        {
+            
+        }
         public Order(Customer customer,decimal deliveryfee, decimal discount)
         {
             Customer = customer;
@@ -32,7 +37,7 @@ namespace App.Domain.Entities
         public DateTime CreateDate { get; private set; }
         public string Number { get; private set; }
         public EOrderStatus Status { get; private set; }
-        public IReadOnlyCollection<OrderItem> Items { get{return _items.ToArray();}}
+        public ICollection<OrderItem> Items { get{return _items.ToArray();}}
         public decimal Deliveryfee { get; private set; }
         public decimal Discount { get; private set; }
         

@@ -5,6 +5,10 @@ namespace App.Domain.Entities
 {
     public class OrderItem : Entity
     {
+        protected OrderItem()
+        {
+            
+        }
         public OrderItem(Product product, decimal quantity, decimal price)
         {
             Product = product;

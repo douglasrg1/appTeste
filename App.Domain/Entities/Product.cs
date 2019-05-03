@@ -4,6 +4,10 @@ namespace App.Domain.Entities
 {
     public class Product : Entity
     {
+        protected Product()
+        {
+            
+        }
         public Product(string title, decimal price, decimal quantityOnHand, string image)
         {
             Title = title;

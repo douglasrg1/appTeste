@@ -1,8 +1,11 @@
 using System;
+using System.Data.SqlClient;
 using System.Linq;
 using App.Domain.Entities;
+using App.Domain.QueryResults.CustomerQuery;
 using App.Domain.Repositories;
 using App.Infra.Context;
+using Dapper;
 
 namespace App.Infra.Repositories
 {
@@ -21,6 +24,17 @@ namespace App.Infra.Repositories
         public Customer Get(Guid Id)
         {
             return _context.Customers.Find(Id);
+        }
+
+        public GetCustomerQuery Get(string username)
+        {
+            //usando dapper
+
+            using(var conn = new SqlConnection(@""))
+            {
+                conn.Open();
+                return conn.Query<GetCustomerQuery>("").FirstOrDefault();
+            }
         }
 
         public void Save(Customer customer)

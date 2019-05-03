@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0"/>
     <PackageReference Include="Flunt" Version="1.0.3"/>
+    <PackageReference Include="Dapper" Version="1.60.9"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Domain\App.Domain.csproj"/>

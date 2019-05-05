@@ -1,28 +1,21 @@
-using System.Data.Entity;
 using App.Domain.Entities;
-using App.Infra.Mappings;
+using System;
 
 namespace App.Infra.Context
 {
-    public class AppDataContext : DbContext
+    public class AppDataContext : IDisposable
     {
-        public AppDataContext() : base(@"Server=.\sqlexpress;DataBase=appTeste;User ID=sa;Password=Drg38914821;")
+        //public SqlConnection Connection { get; set; }
+        public AppDataContext()
         {
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
+            //Connection = new SqlConnection(ConnectionSettings.ConnectionString);
+            //Connection.Open();
         }
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public void Dispose()
         {
-            modelBuilder.Configurations.Add(new CustomerMap());
-            modelBuilder.Configurations.Add(new ProductMap());
-            modelBuilder.Configurations.Add(new OrderItemMap());
-            modelBuilder.Configurations.Add(new OrderMap());
-            modelBuilder.Configurations.Add(new Usermap());
+            //if (Connection.State != ConnectionState.Closed)
+            //    Connection.Close();
         }
     }
 }

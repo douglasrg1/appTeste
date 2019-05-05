@@ -18,12 +18,12 @@ namespace App.Infra.Repositories
         }
         public bool DocumentExists(string document)
         {
-            return _context.Customers.Any(x=>x.Document.Number == document);
+            return false;
         }
 
         public Customer Get(Guid Id)
         {
-            return _context.Customers.Find(Id);
+            return null;
         }
 
         public GetCustomerQuery Get(string username)
@@ -39,7 +39,7 @@ namespace App.Infra.Repositories
 
         public void Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            
         }
     }
 }

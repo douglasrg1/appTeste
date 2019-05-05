@@ -14,7 +14,7 @@ namespace App.Infra.Repositories
         }
         public Product Get(Guid id)
         {
-            return _context.Products.Find(id);
+            return null;
         }
     }
 }

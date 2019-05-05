@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using App.Domain.Entities;
@@ -18,7 +19,10 @@ namespace App.Infra.Repositories
         }
         public bool DocumentExists(string document)
         {
-            return false;
+            return _context.Connection.Query<bool>(
+                    "spCheckDocument", new { Document = document },
+                    commandType: CommandType.StoredProcedure
+                ).FirstOrDefault();
         }
 
         public Customer Get(Guid Id)

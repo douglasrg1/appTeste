@@ -22,7 +22,7 @@ namespace App.Api.Controllers
         [Route("clientes")]
         public IActionResult Get()
         {
-            return Ok("testes");
+            return Ok(_customerRepository.GetAll());
         }
         [HttpPost]
         [Route("clientes")]

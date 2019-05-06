@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using App.Domain.Entities;
+using App.Domain.QueryResults;
 using App.Domain.QueryResults.CustomerQuery;
 using App.Domain.Repositories;
 using App.Infra.Context;
@@ -17,10 +19,10 @@ namespace App.Infra.Repositories
         {
             _context = context;
         }
-        public bool DocumentExists(string document)
+        public bool DocumentExists(string Document)
         {
             return _context.Connection.Query<bool>(
-                    "spCheckDocument", new { Document = document },
+                    "spCheckDocument", new { document = Document },
                     commandType: CommandType.StoredProcedure
                 ).FirstOrDefault();
         }
@@ -28,6 +30,13 @@ namespace App.Infra.Repositories
         public Customer Get(Guid Id)
         {
             return null;
+        }
+        public IEnumerable<ListCustomerQueryResult> GetAll()
+        {
+            return _context.Connection
+            .Query<ListCustomerQueryResult>(
+                "spReturnListCustomer", null,
+                commandType: CommandType.StoredProcedure);
         }
 
         public GetCustomerQuery Get(string username)

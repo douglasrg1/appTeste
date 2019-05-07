@@ -5,15 +5,14 @@ namespace App.Shared.Entity
 {
     public abstract class Entity : Notifiable
     {
-        public Entity(Guid id)
+        public Entity(int id)
         {
             Id = id;
         }
         public Entity()
         {
-            Id = Guid.NewGuid();
         }
 
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
     }
 }

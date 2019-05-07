@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Domain.Handlers;
 using App.Domain.Repositories;
+using App.Domain.Services;
 using App.Infra.Context;
 using App.Infra.Repositories;
+using App.Infra.Services;
 using App.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +38,8 @@ namespace App.Api
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<CustomerCommandHandler,CustomerCommandHandler>();
+            services.AddTransient<IEmailService,EmailService>();
 
             ConnectionSettings.ConnectionString = Configuration["connectionString"];
         }

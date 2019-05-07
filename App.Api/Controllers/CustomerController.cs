@@ -1,5 +1,6 @@
 ﻿using App.Domain.Commands.CustomerCommands;
 using App.Domain.Entities;
+using App.Domain.Handlers;
 using App.Domain.Repositories;
 using App.Domain.ValueObjects;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +14,10 @@ namespace App.Api.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerRepository _customerRepository;
-        public CustomerController(ICustomerRepository customerRepository)
+        private readonly CustomerCommandHandler _handler;
+        public CustomerController(CustomerCommandHandler handler,ICustomerRepository customerRepository)
         {
+            _handler = handler;
             _customerRepository = customerRepository;
         }
 
@@ -22,13 +25,13 @@ namespace App.Api.Controllers
         [Route("clientes")]
         public IActionResult Get()
         {
-            return Ok(_customerRepository.Get(1));
+            return Ok(_customerRepository.GetAll());
         }
         [HttpPost]
         [Route("clientes")]
-        public IActionResult Post([FromBody] RegisterCustomerCommand cliente)
+        public IActionResult Post([FromBody] RegisterCustomerCommand customer)
         {
-            return Ok();
+            return Ok(_handler.Handler(customer));
         }
     }
 }

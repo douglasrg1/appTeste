@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION spCheckDocument ( character )
+CREATE OR REPLACE FUNCTION spCheckDocument ( text )
 RETURNS boolean AS
 $$
 BEGIN

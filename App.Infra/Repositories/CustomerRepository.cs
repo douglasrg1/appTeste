@@ -20,12 +20,14 @@ namespace App.Infra.Repositories
         {
             _context = context;
         }
-        public bool DocumentExists(string Document)
+        public bool DocumentExists(string document)
         {
-            return _context.Connection.Query<bool>(
-                    "spCheckDocument", new { document = Document },
-                    commandType: CommandType.StoredProcedure
-                ).FirstOrDefault();
+            // return _context.Connection.Query<bool>(
+            //         "spCheckDocument", new { Document = document },
+            //         commandType: CommandType.StoredProcedure
+            //     ).FirstOrDefault();
+
+            return false;
         }
 
         public Customer Get(int id)

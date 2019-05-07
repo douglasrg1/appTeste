@@ -23,7 +23,7 @@ namespace App.Domain.Handlers
         }
         public ICommandResult Handler(PlaceOrderCommand command)
         {
-            var customer = _customerRepository.Get(command.Customer);
+            var customer = _customerRepository.Get(1);// todo aki, trocar o id do commando que está como guid para int
             var order = new Order(customer,command.DeliveryFee,command.Discount);
 
             foreach(var item in command.Items)

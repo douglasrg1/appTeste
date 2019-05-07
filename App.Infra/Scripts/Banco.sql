@@ -1,28 +1,26 @@
 ﻿CREATE TABLE "Customer"
 (
-    "Id" serial NOT NULL,
+    "Id" serial PRIMARY KEY NOT NULL,
     "FirstName" character varying(30) NOT NULL,
     "LastName" character varying(30) NOT NULL,
     "Email" character varying(60) NOT NULL,
     "Document" character(11) NOT NULL,
-    PRIMARY KEY ("Id")
 )
 create table "User"
 (
-	"Id" serial not null,
+	"Id" serial primary key not null,
 	"UserName" character varying(50) not null,
 	"Password" character varying(100) not null,
 	"Active" boolean not null,
-	primary key ("Id")
+	"Customer" int references "Customer" on delete restrict
 )
 create table "Product"
 (
-	"Id" serial not null,
+	"Id" serial primary key not null,
 	"Title" character varying(150) not null,
 	"Price" Money not null,
 	"QuantityOnHand" decimal not null,
-	"Image" character varying(1024),
-	primary key ("Id")
+	"Image" character varying(1024)
 )
 create table "OrderItem"
 (

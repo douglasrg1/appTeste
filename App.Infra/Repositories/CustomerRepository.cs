@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using App.Domain.Commands.CustomerCommands;
 using App.Domain.Entities;
 using App.Domain.QueryResults;
 using App.Domain.QueryResults.CustomerQuery;
@@ -27,9 +28,12 @@ namespace App.Infra.Repositories
                 ).FirstOrDefault();
         }
 
-        public Customer Get(Guid Id)
+        public Customer Get(int id)
         {
-            return null;
+            return _context.Connection.Query<Customer>(
+                "spGetCustomerById",new{Id = id},
+                commandType:CommandType.StoredProcedure
+            ).FirstOrDefault();
         }
         public IEnumerable<ListCustomerQueryResult> GetAll()
         {
@@ -52,7 +56,11 @@ namespace App.Infra.Repositories
 
         public void Save(Customer customer)
         {
-            
+            _context.Connection.Execute(
+                "spSaveCustomer",new{FirstName = customer.Name.FirstName,LastName = customer.Name.LastName,
+                                Email = customer.Email.Address,Document = customer.Document.Number},
+                commandType:CommandType.StoredProcedure
+            );
         }
     }
 }

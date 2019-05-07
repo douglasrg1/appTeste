@@ -22,13 +22,13 @@ namespace App.Api.Controllers
         [Route("clientes")]
         public IActionResult Get()
         {
-            return Ok(_customerRepository.GetAll());
+            return Ok(_customerRepository.Get(1));
         }
         [HttpPost]
         [Route("clientes")]
         public IActionResult Post([FromBody] RegisterCustomerCommand cliente)
         {
-            return Ok(cliente);
+            return Ok();
         }
     }
 }

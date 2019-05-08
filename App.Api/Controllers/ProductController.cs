@@ -16,7 +16,7 @@ namespace App.Api.Controllers
         [Route("v1/produtos")]
         public IActionResult Get()
         {
-            return Ok(_productRepository.Get(Guid.NewGuid()));
+            return Ok(_productRepository.Get(1));
         }
 
     }

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION spCheckDocument ( text )
+CREATE OR REPLACE FUNCTION spCheckDocument ( varchar )
 RETURNS boolean AS
 $$
 BEGIN

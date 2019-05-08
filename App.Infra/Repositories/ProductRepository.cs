@@ -12,7 +12,7 @@ namespace App.Infra.Repositories
         {
             _context = context;
         }
-        public Product Get(Guid id)
+        public Product Get(int id)
         {
             return null;
         }

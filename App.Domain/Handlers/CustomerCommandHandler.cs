@@ -22,10 +22,7 @@ namespace App.Domain.Handlers
         public ICommandResult Handler(RegisterCustomerCommand command)
         {
             if(_customerRepository.DocumentExists(command.Document))
-            {
                 AddNotification("Cpf","O cpf já está cadastrado na nossa base de dados");
-                return null;
-            }
 
             //gerar VOS
             var name = new Name(command.FirstName,command.LastName);
@@ -47,14 +44,14 @@ namespace App.Domain.Handlers
                     Notifications);
 
             
-            _customerRepository.Save(customer);
+            var id = _customerRepository.Save(customer);
 
             //enviar email boas vindas
             _emailSerice.Send(customer.ToString(),email.Address,"email boas vindas","bem vindo ao sistema");
 
             //retorna dados para o usuario
             return new CommandResult(true,"Dados adicionado com sucesso",
-                new {Nome = customer.Name.ToString(), Id = customer.Id});
+                new {Nome = customer.Name.ToString(), Id = id});
 
 
             

@@ -10,9 +10,9 @@ namespace App.Domain.Repositories
     public interface ICustomerRepository
     {
         Customer Get(int Id);
-        GetCustomerQuery Get(string username);
+        GetCustomerQuery Get_customer_user(int Id);
         IEnumerable<ListCustomerQueryResult> GetAll();
         bool DocumentExists(string document);
-        void Save(Customer customer);
+        int Save(Customer customer);
     }
 }

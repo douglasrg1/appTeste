@@ -22,20 +22,18 @@ namespace App.Infra.Repositories
         }
         public bool DocumentExists(string document)
         {
-            // return _context.Connection.Query<bool>(
-            //         "spCheckDocument", new { Document = document },
-            //         commandType: CommandType.StoredProcedure
-            //     ).FirstOrDefault();
+            return _context.Connection.Query<bool>(
+                    $"select * from spCheckDocument('{document}')"
+                ).FirstOrDefault();
 
-            return false;
         }
 
         public Customer Get(int id)
         {
             return _context.Connection.Query<Customer>(
-                "spGetCustomerById",new{Id = id},
-                commandType:CommandType.StoredProcedure
+                $"select * from spgetcustomerbyid({id})"
             ).FirstOrDefault();
+
         }
         public IEnumerable<ListCustomerQueryResult> GetAll()
         {
@@ -45,24 +43,25 @@ namespace App.Infra.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public GetCustomerQuery Get(string username)
+        public GetCustomerQuery Get_customer_user(int id)
         {
             //usando dapper
+            // return _context.Connection.Query<GetCustomerQuery>(
+            //     "spgetcustomerbyid",new{Id = id},
+            //     commandType:CommandType.StoredProcedure
+            // ).FirstOrDefault();
 
-            using(var conn = new SqlConnection(@""))
-            {
-                conn.Open();
-                return conn.Query<GetCustomerQuery>("").FirstOrDefault();
-            }
+            return _context.Connection.Query<GetCustomerQuery>(
+                $"select * from spgetcustomerbyid({id})"
+            ).FirstOrDefault();
+            
         }
 
-        public void Save(Customer customer)
+        public int Save(Customer customer)
         {
-            _context.Connection.Execute(
-                "spSaveCustomer",new{FirstName = customer.Name.FirstName,LastName = customer.Name.LastName,
-                                Email = customer.Email.Address,Document = customer.Document.Number},
-                commandType:CommandType.StoredProcedure
-            );
+            return _context.Connection.Query<int>(
+                $"select * from spSaveCustomer('{customer.Name.FirstName}','{customer.Name.LastName}', '{customer.Email.Address}','{customer.Document.Number}')"
+            ).FirstOrDefault();
         }
     }
 }

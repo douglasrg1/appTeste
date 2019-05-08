@@ -23,9 +23,14 @@ namespace App.Api.Controllers
 
         [HttpGet]
         [Route("clientes")]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             return Ok(_customerRepository.GetAll());
+        }
+        [Route("clientes/{id}")]
+        public IActionResult Get(int id)
+        {
+            return Ok(_customerRepository.Get_customer_user(id));
         }
         [HttpPost]
         [Route("clientes")]

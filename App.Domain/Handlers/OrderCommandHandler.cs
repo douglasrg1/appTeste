@@ -2,6 +2,7 @@ using App.Domain.Commands;
 using App.Domain.Commands.OrderCommand;
 using App.Domain.Entities;
 using App.Domain.Repositories;
+using App.Domain.ValueObjects;
 using App.Shared.Commands;
 using Flunt.Notifications;
 
@@ -23,7 +24,7 @@ namespace App.Domain.Handlers
         }
         public ICommandResult Handler(PlaceOrderCommand command)
         {
-            var customer = _customerRepository.Get(1);// todo aki, trocar o id do commando que está como guid para int
+            var customer = _customerRepository.Get(command.Customer);
             var order = new Order(customer,command.DeliveryFee,command.Discount);
 
             foreach(var item in command.Items)

@@ -6,6 +6,6 @@ namespace App.Domain.Repositories
 {
     public interface IProductRepository
     {
-        Product Get(Guid id);
+        Product Get(int id);
     }
 }

@@ -35,6 +35,12 @@ namespace App.Infra.Repositories
             ).FirstOrDefault();
 
         }
+
+        public Customer Get(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ListCustomerQueryResult> GetAll()
         {
             return _context.Connection

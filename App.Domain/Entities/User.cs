@@ -27,7 +27,14 @@ namespace App.Domain.Entities
         public string PassWord { get; private set; }
         public bool Active { get; private set; }
 
+        public bool Authenticate(string username, string password)
+        {
+            if(UserName == username && PassWord == EncriptPassword.EncriptPasswordMd5(password))
+                return true;
 
+            AddNotification("User", "Usuario ou senha inválidos");
+            return false;
+        }
         public bool Activate()=> Active = true;
 
         public bool Descativate()=> Active = false;

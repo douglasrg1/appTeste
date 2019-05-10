@@ -2,7 +2,6 @@ using App.Domain.Commands;
 using App.Domain.Commands.OrderCommand;
 using App.Domain.Entities;
 using App.Domain.Repositories;
-using App.Domain.ValueObjects;
 using App.Shared.Commands;
 using Flunt.Notifications;
 

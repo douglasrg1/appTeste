@@ -1,14 +1,7 @@
 ﻿using App.Domain.Commands.CustomerCommands;
-using App.Domain.Entities;
 using App.Domain.Handlers;
 using App.Domain.Repositories;
-using App.Domain.ValueObjects;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace App.Api.Controllers
 {

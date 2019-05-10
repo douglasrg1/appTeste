@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using App.Domain.Commands.CustomerCommands;
 using App.Domain.Entities;
 using App.Domain.QueryResults;
 using App.Domain.QueryResults.CustomerQuery;

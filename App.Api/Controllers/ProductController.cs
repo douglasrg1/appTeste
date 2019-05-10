@@ -1,6 +1,5 @@
 using App.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace App.Api.Controllers
 {

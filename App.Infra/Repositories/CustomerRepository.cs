@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using App.Domain.Commands.CustomerCommands;
 using App.Domain.Entities;
 using App.Domain.QueryResults;
 using App.Domain.QueryResults.CustomerQuery;

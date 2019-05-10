@@ -1,7 +1,6 @@
 using System;
 using App.Domain.ValueObjects;
 using App.Shared.Entity;
-using Flunt.Validations;
 
 namespace App.Domain.Entities
 {

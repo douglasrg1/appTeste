@@ -121,7 +121,6 @@ namespace App.Api.Controllers
             return Task.FromResult(new ClaimsIdentity(
                 new GenericIdentity(customer.UserName,"Token"),
                 new []{
-                    new Claim("Apptest","User"),
                     new Claim("Apptest","Admin")
                 }
             ));

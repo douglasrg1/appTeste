@@ -28,6 +28,7 @@ namespace App.Api.Controllers
         {
             return Ok(_customerRepository.GetAll());
         }
+        [HttpGet]
         [Route("clientes/{id}")]
         public IActionResult Get(int id)
         {

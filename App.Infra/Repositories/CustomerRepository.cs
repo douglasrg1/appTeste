@@ -36,9 +36,11 @@ namespace App.Infra.Repositories
 
         }
 
-        public Customer Get(string userName)
+        public GetCustomerQuery Get(string userName)
         {
-            throw new NotImplementedException();
+            return _context.Connection.Query<GetCustomerQuery>(
+                $"select * from spGetCustomerByUserName('{userName}')"
+            ).FirstOrDefault();
         }
 
         public IEnumerable<ListCustomerQueryResult> GetAll()

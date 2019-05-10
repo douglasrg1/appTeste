@@ -9,6 +9,7 @@ using App.Api.Security;
 using App.Domain.Commands;
 using App.Domain.Commands.UserCommands;
 using App.Domain.Entities;
+using App.Domain.QueryResults.CustomerQuery;
 using App.Domain.Repositories;
 using Flunt.Notifications;
 using Microsoft.AspNetCore.Authorization;
@@ -23,7 +24,7 @@ namespace App.Api.Controllers
     {
         private readonly ICustomerRepository _repository;
         private readonly TokenOptions _tokenOptions;
-        private Customer _customer;
+        private GetCustomerQuery _customer;
         private readonly JsonSerializerSettings _serializerSettings;
         public AccountController(ICustomerRepository repository,IOptions<TokenOptions> jwtOptions)
         {
@@ -46,7 +47,8 @@ namespace App.Api.Controllers
 
             var identity = await  GetClaims(command);
             if(identity == null)
-                return null;
+                return Ok( new CommandResult(false,"Os seguites campos não estão preenchidos corretamente",
+                    new Notification("Senha","Não foi possivel válidar o usuario e senha")));
 
             var claims = new []
             {
@@ -75,9 +77,8 @@ namespace App.Api.Controllers
                 expires_in = (int)_tokenOptions.ValidFor.TotalSeconds,
                 users = new
                 {
-                    id = _customer.Id,
                     name = _customer.Name.ToString(),
-                    email = _customer.Email.Address
+                    email = _customer.Email
                 }
             };
 
@@ -107,16 +108,18 @@ namespace App.Api.Controllers
         private Task<ClaimsIdentity> GetClaims(AuthenticateUserCommand command)
         {
             var customer = _repository.Get(command.UserName);
-
-            if(User == null)
+            
+            if(customer == null)
                 return Task.FromResult<ClaimsIdentity>(null);
 
-            if(!customer.User.Authenticate(command.UserName,command.Password))
+            var user = new User(command.UserName,customer.Password);
+
+            if(!user.Authenticate(command.UserName,command.Password))
                 return Task.FromResult<ClaimsIdentity>(null);
 
             _customer = customer;
             return Task.FromResult(new ClaimsIdentity(
-                new GenericIdentity(customer.User.UserName,"Token"),
+                new GenericIdentity(customer.UserName,"Token"),
                 new []{
                     new Claim("Apptest","User"),
                     new Claim("Apptest","Admin")

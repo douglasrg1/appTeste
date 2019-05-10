@@ -10,7 +10,7 @@ namespace App.Domain.Repositories
     public interface ICustomerRepository
     {
         Customer Get(int Id);
-        Customer Get(string userName);
+        GetCustomerQuery Get(string userName);
         GetCustomerQuery Get_customer_user(int Id);
         IEnumerable<ListCustomerQueryResult> GetAll();
         bool DocumentExists(string document);

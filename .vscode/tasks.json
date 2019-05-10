@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/App.Test/App.Test.csproj"
+                "${workspaceFolder}/App.Api/App.Api.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/App.Test/App.Test.csproj"
+                "${workspaceFolder}/App.Api/App.Api.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,7 +28,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/App.Test/App.Test.csproj"
+                "${workspaceFolder}/App.Api/App.Api.csproj"
             ],
             "problemMatcher": "$tsc"
         }

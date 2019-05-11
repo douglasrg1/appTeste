@@ -40,12 +40,16 @@ namespace App.Infra.Repositories
 
         public void Save(Order order)
         {
-            
+            _context.Connection.Execute(
+                $"Select * From spSaveOrder({order.Customer.Id},'{order.CreateDate}','{order.Number}',{order.Status},{order.Deliveryfee},{order.Discount})"
+            );
         }
 
         public void Update(Order order)
         {
-            throw new System.NotImplementedException();
+            _context.Connection.Execute(
+                $"Select * From spUpdateOrder({order.Id},{order.Customer.Id},'{order.CreateDate}','{order.Number}',{order.Status},{order.Deliveryfee},{order.Discount})"
+            );
         }
     }
 }

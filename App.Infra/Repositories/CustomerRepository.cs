@@ -50,11 +50,6 @@ namespace App.Infra.Repositories
 
         public GetCustomerQuery Get_customer_user(int id)
         {
-            //usando dapper
-            // return _context.Connection.Query<GetCustomerQuery>(
-            //     "spgetcustomerbyid",new{Id = id},
-            //     commandType:CommandType.StoredProcedure
-            // ).FirstOrDefault();
 
             return _context.Connection.Query<GetCustomerQuery>(
                 $"select * from spgetcustomerbyid({id})"

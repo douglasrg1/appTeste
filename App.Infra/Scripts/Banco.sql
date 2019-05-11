@@ -4,7 +4,7 @@
     "FirstName" character varying(30) NOT NULL,
     "LastName" character varying(30) NOT NULL,
     "Email" character varying(60) NOT NULL,
-    "Document" character(11) NOT NULL,
+    "Document" character(11) NOT NULL
 )
 create table "User"
 (

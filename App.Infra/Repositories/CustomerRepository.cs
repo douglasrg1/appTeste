@@ -59,9 +59,15 @@ namespace App.Infra.Repositories
 
         public int Save(Customer customer)
         {
-            return _context.Connection.Query<int>(
+            var id =  _context.Connection.Query<int>(
                 $"select * from spSaveCustomer('{customer.Name.FirstName}','{customer.Name.LastName}', '{customer.Email.Address}','{customer.Document.Number}')"
             ).FirstOrDefault();
+
+            _context.Connection.Execute(
+                $"select * from spSaveUser('{customer.User.UserName}','{customer.User.PassWord}')"
+            );
+
+            return id;
         }
     }
 }

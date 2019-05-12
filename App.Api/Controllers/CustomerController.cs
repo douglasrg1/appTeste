@@ -1,6 +1,7 @@
 ﻿using App.Domain.Commands.CustomerCommands;
 using App.Domain.Handlers;
 using App.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Api.Controllers
@@ -29,6 +30,7 @@ namespace App.Api.Controllers
         }
         [HttpPost]
         [Route("clientes")]
+        [AllowAnonymous]
         public IActionResult Post([FromBody] RegisterCustomerCommand customer)
         {
             return Ok(_handler.Handler(customer));

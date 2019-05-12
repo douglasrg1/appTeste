@@ -64,7 +64,7 @@ namespace App.Infra.Repositories
             ).FirstOrDefault();
 
             _context.Connection.Execute(
-                $"select * from spSaveUser('{customer.User.UserName}','{customer.User.PassWord}')"
+                $"select * from spSaveUser('{customer.User.UserName}','{customer.User.PassWord}',{customer.User.Active},{id})"
             );
 
             return id;

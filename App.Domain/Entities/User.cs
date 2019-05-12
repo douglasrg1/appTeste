@@ -11,15 +11,18 @@ namespace App.Domain.Entities
         {
             
         }
-        public User(string userName, string passWord)
+        public User(string userName, string passWord,bool newUser = true)
         {
             UserName = userName;
-            PassWord = EncriptPassword.EncriptPasswordMd5(passWord);
+            if(newUser)
+                PassWord = EncriptPassword.EncriptPasswordMd5(passWord);
+            else
+                PassWord = passWord;
             Active = true;
 
             AddNotifications(new Contract()
                 .IsBetween(UserName.Length,5,50,"UserName","O Nome de usuario precisa ter entre 5 e 50 caractéres")
-                .IsBetween(passWord.Length,8,60,"PassWord","A senha precisar ter no minimo 8 e no maximo 60 caracteres")
+                .IsBetween(passWord.Length,7,61,"PassWord","A senha precisar ter no minimo 8 e no maximo 60 caracteres")
             );
         }
 

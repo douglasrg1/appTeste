@@ -112,7 +112,7 @@ namespace App.Api.Controllers
             if(customer == null)
                 return Task.FromResult<ClaimsIdentity>(null);
 
-            var user = new User(command.UserName,customer.Password);
+            var user = new User(command.UserName,customer.Password,false);
 
             if(!user.Authenticate(command.UserName,command.Password))
                 return Task.FromResult<ClaimsIdentity>(null);

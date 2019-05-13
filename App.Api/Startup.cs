@@ -91,7 +91,7 @@ namespace App.Api
             services.AddTransient<CustomerCommandHandler,CustomerCommandHandler>();
             services.AddTransient<IEmailService,EmailService>();
 
-            ConnectionSettings.ConnectionString = Configuration["connectionString"];
+            ConnectionSettings.ConnectionString = Configuration["connectionString2"];
         }
 
         

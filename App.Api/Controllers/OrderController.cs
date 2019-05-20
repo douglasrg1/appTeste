@@ -1,6 +1,7 @@
 using App.Domain.Commands.OrderCommand;
 using App.Domain.Handlers;
 using App.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Api.Controllers
@@ -25,6 +26,7 @@ namespace App.Api.Controllers
         [Route("v1/orders")]
         public IActionResult Post([FromBody] PlaceOrderCommand order)
         {
+            //var customer = User.Identity.Name;
             return Ok(_handler.Handler(order));
         }
     }

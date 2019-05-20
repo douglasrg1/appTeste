@@ -5,11 +5,12 @@ namespace App.Domain.Commands.OrderCommand
 {
     public class PlaceOrderCommand : ICommand
     {
-        public PlaceOrderCommand(int customer, decimal deliveryFee, decimal discount)
+        public PlaceOrderCommand(int customer, decimal deliveryFee, decimal discount,IEnumerable<RegisterOrderItemCommand> items)
         {
             Customer = customer;
             DeliveryFee = deliveryFee;
             Discount = discount;
+            Items = items;
         }
 
         public int Customer { get; private set; }

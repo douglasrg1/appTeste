@@ -1,4 +1,5 @@
 using App.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Api.Controllers
@@ -13,9 +14,10 @@ namespace App.Api.Controllers
 
         [HttpGet]
         [Route("v1/produtos")]
+        [AllowAnonymous]
         public IActionResult Get()
         {
-            return Ok(_productRepository.Get(1));
+            return Ok(_productRepository.GetAll());
         }
 
     }

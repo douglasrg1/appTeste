@@ -10,6 +10,20 @@ namespace App.Domain.Entities
         {
             
         }
+        public Customer(int id,Name name,Document document, DateTime birthDate, Email email,User user)
+        :base(id)
+        {
+            Name = name;
+            Document = document;
+            BirthDate = birthDate;
+            Email = email;
+            User = user;
+
+            AddNotifications(Name.Notifications);
+            AddNotifications(email.Notifications);
+            AddNotifications(document.Notifications);
+            AddNotifications(user.Notifications);
+        }
         public Customer(Name name,Document document, DateTime birthDate, Email email,User user)
         {
             Name = name;

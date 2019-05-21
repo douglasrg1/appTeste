@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -5,6 +6,7 @@ using App.Domain.Entities;
 using App.Domain.QueryResults;
 using App.Domain.QueryResults.CustomerQuery;
 using App.Domain.Repositories;
+using App.Domain.ValueObjects;
 using App.Infra.Context;
 using Dapper;
 
@@ -27,9 +29,16 @@ namespace App.Infra.Repositories
 
         public Customer Get(int id)
         {
-            return _context.Connection.Query<Customer>(
+            var customerAux =  _context.Connection.Query<GetCustomerQuery>(
                 $"select * from spgetcustomerbyid({id})"
             ).FirstOrDefault();
+
+            var name = new Name(customerAux.Name.Split(' ')[0],customerAux.Name.Split(' ')[1]);
+            var user = new User(customerAux.UserName,customerAux.Password,false);
+            var document = new Document(customerAux.Document);
+            var email = new Email(customerAux.Email);
+
+            return new Customer(customerAux.Id,name,document,DateTime.Now,email,user);
 
         }
 

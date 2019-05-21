@@ -40,9 +40,10 @@ namespace App.Infra.Repositories
 
         public void Save(Order order)
         {
-            _context.Connection.Execute(
-                $"Select * From spSaveOrder({order.Customer.Id},'{order.CreateDate}','{order.Number}',{order.Status},{order.Deliveryfee},{order.Discount})"
-            );
+            int status = (int)order.Status;
+            int res =  _context.Connection.Query<int>(
+                $"Select * From spSaveOrder({order.Customer.Id},'{order.Customer.BirthDate.ToString("yyyy-MM-dd")}','{order.Number}',{status},{order.Deliveryfee},{order.Discount})"
+            ).FirstOrDefault();
         }
 
         public void Update(Order order)

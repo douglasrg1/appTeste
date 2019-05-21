@@ -26,7 +26,7 @@ namespace App.Api.Controllers
         [Route("v1/orders")]
         public IActionResult Post([FromBody] PlaceOrderCommand order)
         {
-            //var customer = User.Identity.Name;
+            var customer = User.Identity.Name;
             return Ok(_handler.Handler(order));
         }
     }

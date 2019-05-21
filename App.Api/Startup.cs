@@ -89,6 +89,7 @@ namespace App.Api
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<CustomerCommandHandler,CustomerCommandHandler>();
+            services.AddTransient<OrderCommandHandler,OrderCommandHandler>();
             services.AddTransient<IEmailService,EmailService>();
 
             ConnectionSettings.ConnectionString = Configuration["connectionString"];
